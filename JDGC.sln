@@ -5,10 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JDGC", "JDGC\JDGC.vcxproj", "{2AC676E2-4FDB-4BB8-9B5B-EEB0E497FFED}"
 	ProjectSection(ProjectDependencies) = postProject
-		{E4A2833E-DBB8-4672-897A-FD592D95739B} = {E4A2833E-DBB8-4672-897A-FD592D95739B}
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12} = {2F77A71A-356B-4E32-84B3-0C6EF5717A12}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatlabEnginePub", "MatlabEnginePub\MatlabEnginePub.vcxproj", "{E4A2833E-DBB8-4672-897A-FD592D95739B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerrainElevationDB", "TerrainElevationDB\TerrainElevationDB.vcxproj", "{2F77A71A-356B-4E32-84B3-0C6EF5717A12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,14 @@ Global
 		{E4A2833E-DBB8-4672-897A-FD592D95739B}.Release|x64.Build.0 = Release|x64
 		{E4A2833E-DBB8-4672-897A-FD592D95739B}.Release|x86.ActiveCfg = Release|Win32
 		{E4A2833E-DBB8-4672-897A-FD592D95739B}.Release|x86.Build.0 = Release|Win32
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Debug|x64.ActiveCfg = Debug|x64
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Debug|x64.Build.0 = Debug|x64
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Debug|x86.ActiveCfg = Debug|Win32
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Debug|x86.Build.0 = Debug|Win32
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Release|x64.ActiveCfg = Release|x64
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Release|x64.Build.0 = Release|x64
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Release|x86.ActiveCfg = Release|Win32
+		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\MatlabEnginePub\MatlabEngine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\MatlabEnginePub\Export.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\include\MatlabEnginePub\DataStructDef.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\MatlabEnginePub\MatlabEngineBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MatlabEngine.cpp">
+    <ClCompile Include="MatlabEngineBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

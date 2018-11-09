@@ -104,12 +104,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\include;$(MATLAB_PATH)\extern\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;$(MATLAB_PATH)\extern\include;;D:\mysql-8.0.12-winx64\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>MatlabEnginePubd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MatlabEnginePubd.lib;TerrainElevationDBd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -146,7 +146,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>MatlabEnginePub.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MatlabEnginePub.lib;TerrainElevationDB.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
