@@ -27,12 +27,18 @@
     <ClInclude Include="..\include\TerrainElevationDB\DBRunway.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\TerrainElevationDB\DBRunwayData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DBEngine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DBRunway.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBRunwayData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,14 +1,19 @@
 #ifndef TERRAINELEVATION_COMMDEFINE_H
 #define TERRAINELEVATION_COMMDEFINE_H
 
+#include <string>
+
 /* 数据库连接所需参数 */
 #define db_host_name "localhost"
 #define db_user_name "root"
 #define db_password "123456"
-#define db_port 3306
+#define db_port 0
 #define db_name "terrain_elevation_db"
 #define db_socket_name nullptr
 #define db_flag 0
+
+/* 数据块的大小 */
+#define DB_BLOB_SIZE 10000
 
 /* 构造跑道所需参数的常量 */
 #define RUNWAY_LINE_LENGTH 42.195

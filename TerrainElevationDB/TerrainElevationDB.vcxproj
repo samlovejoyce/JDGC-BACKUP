@@ -104,7 +104,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;TERRAINELEVATIONDB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;TERRAINELEVATIONDB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\include;D:\mysql-8.0.12-winx64\include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -142,7 +142,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;TERRAINELEVATIONDB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;TERRAINELEVATIONDB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\include;D:\mysql-8.0.12-winx64\include</AdditionalIncludeDirectories>
     </ClCompile>
@@ -160,11 +160,13 @@
     <ClInclude Include="..\include\TerrainElevationDB\CommDefine.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DBEngine.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DBRunway.h" />
+    <ClInclude Include="..\include\TerrainElevationDB\DBRunwayData.h" />
     <ClInclude Include="..\include\TerrainElevationDB\Export.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DBEngine.cpp" />
     <ClCompile Include="DBRunway.cpp" />
+    <ClCompile Include="DBRunwayData.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -40,8 +40,6 @@ namespace TerrainElevation
 		RunwayCircle runwayCircleQuadrantThird;
 		RunwayCircle runwayCircleQuadrantFourth;
 
-		//DBEngine *dbengine;
-
 	};
 }
 

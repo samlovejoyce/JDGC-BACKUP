@@ -8,8 +8,9 @@ using namespace TerrainElevation;
 DBEngine* DBEngine::instance = nullptr;
 
 DBEngine::DBEngine()
-	:mySql(nullptr)
+	:db(nullptr)
 {
+	connectDB();
 }
 
 DBEngine::~DBEngine()
@@ -28,23 +29,24 @@ DBEngine * DBEngine::getInstance()
 
 bool DBEngine::connectDB()
 {
-	if (!mySql)
+	if (!db)
 	{
-		if (mysql_library_init(0, nullptr, nullptr))
+		if (mysql_library_init(0, nullptr, nullptr)) /* 初始化MySQL库 */
 		{
 			printf("数据库服务初始化失败！");
 			return false;
 		}
 
-		mySql = mysql_init(nullptr);
+		db = mysql_init(nullptr); /* 初始化连接处理程序 */
 
-		if (mysql_options(mySql, MYSQL_SET_CHARSET_NAME, "utf8"))
+		if (mysql_options(db, MYSQL_SET_CHARSET_NAME, "utf8"))
 		{
 			printf("数据库字符集设置失败！");
 			return false;
 		}
 
-		if (mysql_real_connect(mySql, db_host_name, db_user_name,
+		/* 连接到服务器 */
+		if ( mysql_real_connect(db, db_host_name, db_user_name,
 			db_password, db_name, db_port,
 			db_socket_name, db_flag) == NULL)
 		{
@@ -57,11 +59,26 @@ bool DBEngine::connectDB()
 	return true;
 }
 
+MYSQL_RES * TerrainElevation::DBEngine::queryDB(MYSQL * pdb, const char * query)
+{
+	MYSQL_RES *res = nullptr;
+	if (mysql_real_query(pdb, query, strlen(query)) != 0)
+		return nullptr;
+
+	if (mysql_field_count(pdb) > 0)
+	{
+		if (!(res = mysql_store_result(pdb)))
+			return nullptr;
+	}
+
+	return res;
+}
+
 void DBEngine::closeDB()
 {
-	if (mySql)
+	if (db)
 	{
-		mysql_close(mySql);
-		mysql_library_end();
+		mysql_close(db); /* 关闭与MySQL服务器的连接 */
+		mysql_library_end(); /* 结束MySQL库的使用 */
 	}
 }

@@ -16,16 +16,17 @@ namespace TerrainElevation {
 
 		bool connectDB();
 
+		MYSQL_RES *queryDB(MYSQL *mysql, const char *query);
+
 		void closeDB();
 
-
-		MYSQL* getDB() { return mySql; }
+		MYSQL* getDB() { return db; }
 
 	private:
 		static DBEngine* instance;
 		DBEngine();
 
-		MYSQL *mySql;
+		MYSQL *db;
 
 	};
 }
