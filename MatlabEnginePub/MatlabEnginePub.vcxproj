@@ -157,12 +157,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\MatlabEnginePub\DataStructDef.h" />
+    <ClInclude Include="..\include\MatlabEnginePub\CommDefine.h" />
     <ClInclude Include="..\include\MatlabEnginePub\Export.h" />
     <ClInclude Include="..\include\MatlabEnginePub\MatlabEngineBase.h" />
+    <ClInclude Include="..\include\MatlabEnginePub\MEOpenCRG.h" />
+    <ClInclude Include="..\include\MatlabEnginePub\MERoadPSD.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MatlabEngineBase.cpp" />
+    <ClCompile Include="MEOpenCRG.cpp" />
+    <ClCompile Include="MERoadPSD.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
