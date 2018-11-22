@@ -1,33 +1,33 @@
-#include <TerrainElevationDB/DBEngine.h>
+#include <TerrainElevationDB/DBMysqlEngine.h>
 #include <TerrainElevationDB/CommDefine.h>
 
 #include <stdio.h>
 
 using namespace TerrainElevation;
 
-DBEngine* DBEngine::instance = nullptr;
+DBMysqlEngine* DBMysqlEngine::instance = nullptr;
 
-DBEngine::DBEngine()
+DBMysqlEngine::DBMysqlEngine()
 	:db(nullptr)
 {
 	connectDB();
 }
 
-DBEngine::~DBEngine()
+DBMysqlEngine::~DBMysqlEngine()
 {
 	closeDB();
 }
 
-DBEngine * DBEngine::getInstance()
+DBMysqlEngine * DBMysqlEngine::getInstance()
 {
 	if (instance == nullptr)
 	{
-		instance = new DBEngine();
+		instance = new DBMysqlEngine();
 	}
 	return instance;
 }
 
-bool DBEngine::connectDB()
+bool DBMysqlEngine::connectDB()
 {
 	if (!db)
 	{
@@ -46,9 +46,9 @@ bool DBEngine::connectDB()
 		}
 
 		/* 连接到服务器 */
-		if ( mysql_real_connect(db, db_host_name, db_user_name,
-			db_password, db_name, db_port,
-			db_socket_name, db_flag) == NULL)
+		if ( mysql_real_connect(db, DB_HOST_NAME, DB_USER_NAME,
+			DB_PASSWORD, DB_NAME, DB_PORT,
+			DB_SOCKET_NAME, DB_FLAG) == NULL)
 		{
 			printf("连接到数据库失败！");
 			return false;
@@ -59,7 +59,7 @@ bool DBEngine::connectDB()
 	return true;
 }
 
-MYSQL_RES * TerrainElevation::DBEngine::queryDB(MYSQL * pdb, const char * query)
+MYSQL_RES * TerrainElevation::DBMysqlEngine::queryDB(MYSQL * pdb, const char * query)
 {
 	MYSQL_RES *res = nullptr;
 	if (mysql_real_query(pdb, query, strlen(query)) != 0)
@@ -74,7 +74,7 @@ MYSQL_RES * TerrainElevation::DBEngine::queryDB(MYSQL * pdb, const char * query)
 	return res;
 }
 
-void DBEngine::closeDB()
+void DBMysqlEngine::closeDB()
 {
 	if (db)
 	{

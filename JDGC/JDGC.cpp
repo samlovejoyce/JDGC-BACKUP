@@ -9,8 +9,10 @@
 #include <mysql.h>
 
 //#include <MatlabEnginePub/MatlabEngineBase.h>
-#include <TerrainElevationDB/DBEngine.h>
-#include <TerrainElevationDB/DBRunwayData.h>
+//#include <TerrainElevationDB/DBMysqlEngine.h>
+//#include <TerrainElevationDB/DBWriteRoadDataToSql.h>
+
+#include <TerrainElevationDB/DBGenerationData.h>
 
 int main()
 {
@@ -61,29 +63,9 @@ int main()
 
 	//bool seccessful = dbEngine->connectDB();
 
-	TerrainElevation::DBRunwayData * runwayData = new TerrainElevation::DBRunwayData();
+	TerrainElevation::DBGenerationData *gdata = new TerrainElevation::DBGenerationData();
 
-	float x = 0.70, y = 0.80;
-	float *z = new float [10000];
-
-	time_t tm = time(0);
-	srand(tm);
-	for (int i = 0; i < DB_BLOB_SIZE; i++)
-	{
-		z[i] = -0.5 + float(rand() % 1000) / 1000.0;
-	}
-	//runwayData->writeDataTDB(x, y, z);
-
-	float *zdata = runwayData->readZDataFromDB(x, y);
-
-	for (int i = 0; i < DB_BLOB_SIZE; i++)
-	{
-		if ((i % 10) == 0)
-		{
-			printf("\n");
-		}
-		printf("%f\t", zdata[i]);
-	}
+	gdata->generateRoadData();
 
 	getchar();
     return 0;

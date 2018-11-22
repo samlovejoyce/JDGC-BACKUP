@@ -2,62 +2,68 @@
 #define TERRAINELEVATION_COMMDEFINE_H
 
 #include <string>
+/************************************************************************/
+/* 数据库相关宏                                                                     */
+/************************************************************************/
 
 /* 数据库连接所需参数 */
-#define db_host_name "localhost"
-#define db_user_name "root"
-#define db_password "123456"
-#define db_port 0
-#define db_name "terrain_elevation_db"
-#define db_socket_name nullptr
-#define db_flag 0
+#define DB_HOST_NAME "localhost"
+#define DB_USER_NAME "root"
+#define DB_PASSWORD "123456"
+#define DB_PORT 0
+#define DB_NAME "terrain_elevation_db"
+#define DB_SOCKET_NAME nullptr
+#define DB_FLAG 0
 
 /* 数据块的大小 */
 #define DB_BLOB_SIZE 10000
 
+/************************************************************************/
+/* 道路模型构造相关宏                                                                     */
+/************************************************************************/
+
 /* 构造跑道所需参数的常量 */
-#define RUNWAY_LINE_LENGTH 42.195
-#define RUNWAY_LINE_WIDTH 6.1
-#define RUNWAY_LINE_WIDTH1 36.5
-#define RUNWAY_LINE_WIDTH2 (RUNWAY_LINE_WIDTH1 + RUNWAY_LINE_WIDTH)
+#define ROAD_RECT_LENGTH 487.5
+#define ROAD_RECT_SMALL_WIDTH 107
+#define ROAD_RECT_LARGE_WIDTH 125
 
-#define RUNWAY_CIRCLE_INNERRADIUS 36.5
-#define RUNWAY_CIRCLE_OUTRADIUS 42.6
+#define ROAD_CIRCLE_INNER_RADIUS 107
+#define ROAD_CIRCLE_OUT_RADIUS 125
 
 
-struct RunwayPoint
+struct RoadPointStruct
 {
 	float x;
 	float y;
 	float z;
 
-	RunwayPoint():x(0.0),y(0.0),z(0.0){}
+	RoadPointStruct():x(0.0),y(0.0),z(0.0){}
 
-	RunwayPoint(float _x, float _y, float _z = 0.0) {
+	RoadPointStruct(float _x, float _y, float _z = 0.0) {
 		x = _x;
 		y = _y;
 		z = _z;
 	}
 };
 
-struct RunwayRectangle
+struct RoadRectangleStruct
 {
-	RunwayPoint bottom;
-	RunwayPoint right;
-	RunwayPoint left;
-	RunwayPoint top;
+	RoadPointStruct bottom;
+	RoadPointStruct right;
+	RoadPointStruct left;
+	RoadPointStruct top;
 };
 
-struct RunwayCircle
+struct RoadCircleStruct
 {
-	RunwayPoint center;
+	RoadPointStruct center;
 	float outRadius;
 	float innerRadius;
 
 };
 
 /* 数据象限标识 */
-enum RunwayQuadrant
+enum RoadQuadrantEnum
 {
 	RunwayQuadrantCount = -1,
 	RunwayQuadrantFirst = 1,	/* 第一象限 */

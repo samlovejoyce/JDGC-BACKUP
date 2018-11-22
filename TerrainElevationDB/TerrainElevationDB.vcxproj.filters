@@ -18,27 +18,39 @@
     <ClInclude Include="..\include\TerrainElevationDB\Export.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\DBEngine.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\TerrainElevationDB\CommDefine.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\DBRunway.h">
+    <ClInclude Include="..\include\TerrainElevationDB\DBGenerationData.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\DBRunwayData.h">
+    <ClInclude Include="..\include\TerrainElevationDB\DBWriteRoadDataToSql.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\TerrainElevationDB\DBReadRoadDataFromSql.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\TerrainElevationDB\DBRoadShapeData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\TerrainElevationDB\DBMysqlEngine.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DBEngine.cpp">
+    <ClCompile Include="DBGenerationData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DBRunway.cpp">
+    <ClCompile Include="DBWriteRoadDataToSql.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DBRunwayData.cpp">
+    <ClCompile Include="DBReadRoadDataFromSql.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBRoadShapeData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBMysqlEngine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
