@@ -36,6 +36,9 @@
     <ClInclude Include="..\include\TerrainElevationDB\DBMysqlEngine.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\TerrainElevationDB\DBRoadDataAnalyze.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DBGenerationData.cpp">
@@ -52,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="DBMysqlEngine.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBRoadDataAnalyze.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\TerrainElevationDB\CommDefine.cpp">
+      <Filter>头文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

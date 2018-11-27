@@ -3,7 +3,8 @@
 
 #include "stdafx.h"
 
-#include <time.h>
+#include <ctime>
+#include <iostream>
 #include <string>
 
 #include <mysql.h>
@@ -12,32 +13,11 @@
 //#include <TerrainElevationDB/DBMysqlEngine.h>
 //#include <TerrainElevationDB/DBWriteRoadDataToSql.h>
 
-#include <TerrainElevationDB/DBGenerationData.h>
+//#include <TerrainElevationDB/DBGenerationData.h>
+#include <TerrainElevationDB/DBRoadDataAnalyze.h>
 
 int main()
 {
-
-	//std::string path = "D:\\SharperM\\JDGC\\OpenCRG.1.1.2\\matlab";
-	//MATLABENGINE::MatlabEngine* mEngine = MATLABENGINE::MatlabEngine::getInstancePrt();
-	////Engine* ep = mEngine->getMatlabEngine();
-	//mEngine->setCrgMatlabWorkPath(path);
-	//path = std::string("Copyright 2005-2010 OpenCRG - Daimler AG - Jochen Rauh");
-	//double uinc = 0.01;
-	//double vinc = 0.01;
-	//int nv = 201;
-	//int nu = nv * 5;
-	//CrgData *pdata = new CrgData();
-	//pdata->crgDataUInc = 0.01;
-	//pdata->crgDataVInc = 0.01;
-	//pdata->crgDataVMax = crgDataNV;
-	//pdata->crgDataUEnd = 1005;
-
-	//double **peaks= new double *[nu];
-	//for (int i = 0; i < nu; i++)
-	//{
-		/* 创建一个 NU * NV 的二维数组 */
-	//	peaks[i] = new double[nv];
-	//}
 
 	//time_t tm = time(0);
 	//srand(tm);
@@ -63,9 +43,25 @@ int main()
 
 	//bool seccessful = dbEngine->connectDB();
 
-	TerrainElevation::DBGenerationData *gdata = new TerrainElevation::DBGenerationData();
+	/** 生成试车场路面点云数据 */
+	/*TerrainElevation::DBGenerationData *gdata = new TerrainElevation::DBGenerationData();
+	gdata->generateRoadData();*/
 
-	gdata->generateRoadData();
+
+	/** 访问数据库，获取一系列点的高程 */
+	TerrainElevation::DBRoadDataAnalyze *roadDataAnalyze = new TerrainElevation::DBRoadDataAnalyze();
+	
+	std::vector<Pointf> vecPoint;
+	vecPoint.push_back(Pointf(15.0, 119.3));
+	vecPoint.push_back(Pointf(60.0, 125.4));
+	
+	SYSTEMTIME stNow;
+	GetSystemTime(&stNow);
+
+	std::cout << "Start:" << stNow.wMinute << ":" << stNow.wSecond << ":" << stNow.wMilliseconds << std::endl;
+	roadDataAnalyze->roadPointsInterp(vecPoint);
+	GetSystemTime(&stNow);
+	std::cout << "End:" << stNow.wMinute << ":" << stNow.wSecond << ":" << stNow.wMilliseconds << std::endl;
 
 	getchar();
     return 0;

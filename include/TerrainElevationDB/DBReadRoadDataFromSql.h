@@ -14,7 +14,7 @@ namespace TerrainElevation
 		DBReadRoadDataFromSql();
 		~DBReadRoadDataFromSql();
 
-		float *readData(float x, float y);
+		float *readData(float xmin, float xmax, float ymin, float ymax);
 	
 	private:
 		DBMysqlEngine *mySqlEngine;

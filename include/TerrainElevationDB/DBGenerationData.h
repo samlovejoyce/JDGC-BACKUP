@@ -38,7 +38,7 @@ namespace TerrainElevation
 		DBRoadShapeData *dbRoadShapeData;
 		DBWriteRoadDataToSql *dbWriteRoadDataToSql;
 
-
+		std::mutex tempMutex;
 		std::thread generateDataThread[8];
 	};
 }

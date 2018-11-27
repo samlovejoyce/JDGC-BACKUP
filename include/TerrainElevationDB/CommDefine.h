@@ -1,6 +1,7 @@
 #ifndef TERRAINELEVATION_COMMDEFINE_H
 #define TERRAINELEVATION_COMMDEFINE_H
 
+#include <vector>
 #include <string>
 /************************************************************************/
 /* 数据库相关宏                                                                     */
@@ -31,34 +32,43 @@
 #define ROAD_CIRCLE_OUT_RADIUS 125
 
 
-struct RoadPointStruct
+struct Pointf
 {
 	float x;
 	float y;
 	float z;
 
-	RoadPointStruct():x(0.0),y(0.0),z(0.0){}
+	Pointf():x(0.0),y(0.0),z(0.0){}
 
-	RoadPointStruct(float _x, float _y, float _z = 0.0) {
+	Pointf(float _x, float _y, float _z = 0.0) {
 		x = _x;
 		y = _y;
 		z = _z;
 	}
+
+	Pointf operator =(Pointf p)
+	{
+		x = p.x;
+		y = p.y;
+		z = p.z;
+		
+		return *this;
+	}
 };
 
-struct RoadRectangleStruct
+struct RoadRectStruct
 {
-	RoadPointStruct bottom;
-	RoadPointStruct right;
-	RoadPointStruct left;
-	RoadPointStruct top;
+	Pointf bottom;
+	Pointf right;
+	Pointf left;
+	Pointf top;
 };
 
 struct RoadCircleStruct
 {
-	RoadPointStruct center;
-	float outRadius;
-	float innerRadius;
+	Pointf center;			/** 圆的中心点 */
+	float outRadius;		/** 内圆半径 */
+	float innerRadius;		/** 外圆半径 */
 
 };
 
@@ -71,5 +81,42 @@ enum RoadQuadrantEnum
 	RunwayQuadrantThird,		/* 第三象限 */
 	RunwayQuadrantFouth			/* 第四象限 */
 };
+
+/** 道路最小数据存储单元数据结构 */
+struct RoadDataBlobStruct
+{
+	float xmin;					/** 数据块x的最小值 */
+	float xmax;					/** 数据块x的最大值 */
+	float ymin;					/** 数据块y的最小值 */
+	float ymax;					/** 数据块y的最大值 */
+	float zdata[DB_BLOB_SIZE];
+
+	/** 默认构造函数 */
+	RoadDataBlobStruct() :xmin(0.0), xmax(0.0), ymin(0.0), ymax(0.0)
+	{
+		memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
+	}
+
+	/** 构造函数 */
+	RoadDataBlobStruct(float x1, float y1, float x2, float y2)
+	{
+		xmin = x1; xmax = x2; ymin = y1; ymax = y2;
+		memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
+	}
+
+	/** 数据是否有效 */
+	bool isEmpty();
+	
+	/** 设置数据结构的数据 */
+	void setData(Pointf &point);
+	
+};
+
+namespace Math
+{
+	/** 一次线性插值 */
+	extern float interpolate(std::vector<float> &xData, std::vector<float> &yData, float xi);
+
+}
 
 #endif // !TERRAINELEVATION_COMMDEFINE_H

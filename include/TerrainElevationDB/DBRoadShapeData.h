@@ -21,7 +21,7 @@ namespace TerrainElevation
 		bool isInRoadCircleArea(float x, float y);
 
 		/** 点是否在矩形区域内 */
-		bool isInRectArea(float x, float y, RoadRectangleStruct rect);
+		bool isInRectArea(float x, float y, RoadRectStruct rect);
 
 		/** 点是否在圆形区域内 */
 		bool isInCircleArea(float x, float y, RoadCircleStruct circle);
@@ -34,25 +34,25 @@ namespace TerrainElevation
 		void initRoadShapeData();
 
 		/** 计算矩形的面积 */
-		float getRectArea(RoadRectangleStruct rect);
+		float getRectArea(RoadRectStruct rect);
 
 		/** 计算三角形的面积 */
-		float trangleArea(RoadPointStruct p1, RoadPointStruct p2, RoadPointStruct p3);
+		float trangleArea(Pointf p1, Pointf p2, Pointf p3);
 
 		/** 判定给定的点是否属于四分之一圆 */
 		bool checkInQuadrant(float x, float y, RoadCircleStruct circle);
 
 	private:
 
-		RoadRectangleStruct roadDataRectQuadrantFirst;		/** 矩形第一象限 */
-		RoadRectangleStruct roadDataRectQuadrantSecond;		/** 矩形第二象限 */
-		RoadRectangleStruct roadDataRectQuadrantThird;		/** 矩形第三象限 */
-		RoadRectangleStruct roadDataRectQuadrantFourth;		/** 矩形第四象限 */
+		RoadRectStruct roadRectFirstQuadrant;		/** 矩形第一象限 */
+		RoadRectStruct roadRectSecondQuadrant;		/** 矩形第二象限 */
+		RoadRectStruct roadRectThirdQuadrant;		/** 矩形第三象限 */
+		RoadRectStruct roadRectFourthQuadrant;		/** 矩形第四象限 */
 
-		RoadCircleStruct roadDataCircleQuadrantFirst;		/** 圆形第一象限 */
-		RoadCircleStruct roadDataCircleQuadrantSecond;		/** 圆形第二象限 */
-		RoadCircleStruct roadDataCircleQuadrantThird;		/** 圆形第三象限 */
-		RoadCircleStruct roadDataCircleQuadrantFourth;		/** 圆形第四象限 */
+		RoadCircleStruct roadCircleFirstQuadrant;		/** 圆形第一象限 */
+		RoadCircleStruct roadCircleSecondQuadrant;		/** 圆形第二象限 */
+		RoadCircleStruct roadCircleThirdQuadrant;		/** 圆形第三象限 */
+		RoadCircleStruct roadCircleFourthQuadrant;		/** 圆形第四象限 */
 
 	};
 }

@@ -161,14 +161,17 @@
     <ClInclude Include="..\include\TerrainElevationDB\DBMysqlEngine.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DBGenerationData.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DBReadRoadDataFromSql.h" />
+    <ClInclude Include="..\include\TerrainElevationDB\DBRoadDataAnalyze.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DBRoadShapeData.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DBWriteRoadDataToSql.h" />
     <ClInclude Include="..\include\TerrainElevationDB\Export.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\include\TerrainElevationDB\CommDefine.cpp" />
     <ClCompile Include="DBMysqlEngine.cpp" />
     <ClCompile Include="DBGenerationData.cpp" />
     <ClCompile Include="DBReadRoadDataFromSql.cpp" />
+    <ClCompile Include="DBRoadDataAnalyze.cpp" />
     <ClCompile Include="DBRoadShapeData.cpp" />
     <ClCompile Include="DBWriteRoadDataToSql.cpp" />
   </ItemGroup>

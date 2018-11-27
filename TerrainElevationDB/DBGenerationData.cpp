@@ -20,7 +20,7 @@ TerrainElevation::DBGenerationData::~DBGenerationData()
 }
 
 void TerrainElevation::DBGenerationData::generateRectBlobData(float x, float y)
-{
+{	
 	float resulotion = 0.005;
 	time_t tm = time(0);
 	srand(tm);
@@ -53,9 +53,12 @@ void TerrainElevation::DBGenerationData::generateRectBlobData(float x, float y)
 		/** 直接生成10000个个数据 */
 		/*for(int i = 0; i < DB_BLOB_SIZE; i++)
 			data[i] = -0.05 + float(rand() % 1000) / 10000.0;*/
-
+		tempMutex.lock();
+		
 		dbWriteRoadDataToSql->writeData(x, y, data);
 		delete [] data;
+
+		tempMutex.unlock();
 	}
 }
 
@@ -94,8 +97,12 @@ void TerrainElevation::DBGenerationData::generateCircleBolbData(float x, float y
 		/*for(int i = 0; i < DB_BLOB_SIZE; i++)
 		data[i] = -0.05 + float(rand() % 1000) / 10000.0;*/
 
+		tempMutex.lock();
+
 		dbWriteRoadDataToSql->writeData(x, y, data);
 		delete[] data;
+
+		tempMutex.unlock();
 	}
 }
 
@@ -108,30 +115,24 @@ void TerrainElevation::DBGenerationData::generateRoadData()
 	 * 跑道数据分象限生成，首先是第一现象矩形部分，然后是第一象限环形部分
 	 */
 
-	generateDataThread[0] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantFirst);
-	generateDataThread[1] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantSecond);
-	generateDataThread[2] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantThird);
-	generateDataThread[3] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantFouth);
 
-	/*generateDataThread[4] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantFirst);
-	generateDataThread[5] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantSecond);
-	generateDataThread[6] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantThird);
-	generateDataThread[7] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantFouth);*/
+	 generateDataThread[0] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantFirst);
+	 generateDataThread[1] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantSecond);
+	 generateDataThread[2] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantThird);
+	 generateDataThread[3] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantFouth);
+
+	 generateDataThread[4] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantFirst);
+	 generateDataThread[5] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantSecond);
+	 generateDataThread[6] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantThird);
+	 generateDataThread[7] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantFouth);
 	
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 8; i++)
 		generateDataThread[i].join();
 
-	/*generateRectangleQuadrantData(RunwayQuadrantFirst);
-	generateRectangleQuadrantData(RunwayQuadrantSecond);
-	generateRectangleQuadrantData(RunwayQuadrantThird);
-	generateRectangleQuadrantData(RunwayQuadrantFouth);*/
 }
 
 void TerrainElevation::DBGenerationData::generateRectangleQuadrantData(RoadQuadrantEnum roadQuadrant)
 {
-	std::mutex tempMutex;
-	tempMutex.lock();
-
 	float xmin = 0.0, xmax = 0.0, ymin = 0.0, ymax = 0.0;
 	float resulotion = 0.5;
 
@@ -182,11 +183,8 @@ void TerrainElevation::DBGenerationData::generateRectangleQuadrantData(RoadQuadr
 		for (float y = ymin; y <= ymax; y += resulotion)
 		{
 			generateRectBlobData(x, y);
-
 		}
 	}
-	
-	tempMutex.unlock();
 }
 
 void TerrainElevation::DBGenerationData::generateCircleQuadrantData(RoadQuadrantEnum roadQuadrant)
@@ -206,7 +204,7 @@ void TerrainElevation::DBGenerationData::generateCircleQuadrantData(RoadQuadrant
 	{
 		xmin = ROAD_RECT_LENGTH;
 		xmax = ROAD_RECT_LENGTH + ROAD_RECT_LARGE_WIDTH;
-		ymin = ROAD_RECT_SMALL_WIDTH;
+		ymin = 0.0;
 		ymax = ROAD_RECT_LARGE_WIDTH;
 	}
 	break;
@@ -214,7 +212,7 @@ void TerrainElevation::DBGenerationData::generateCircleQuadrantData(RoadQuadrant
 	{
 		xmin = -(ROAD_RECT_LENGTH + ROAD_RECT_LARGE_WIDTH);
 		xmax = -ROAD_RECT_LENGTH;
-		ymin = ROAD_RECT_SMALL_WIDTH;
+		ymin = 0.0;
 		ymax = ROAD_RECT_LARGE_WIDTH;
 	}
 	break;
@@ -223,7 +221,7 @@ void TerrainElevation::DBGenerationData::generateCircleQuadrantData(RoadQuadrant
 		xmin = -(ROAD_RECT_LENGTH + ROAD_RECT_LARGE_WIDTH);
 		xmax = -ROAD_RECT_LENGTH;
 		ymin = -ROAD_RECT_LARGE_WIDTH;
-		ymax = -ROAD_RECT_SMALL_WIDTH;
+		ymax = 0.0;
 	}
 	break;
 	case RunwayQuadrantFouth:
@@ -231,7 +229,7 @@ void TerrainElevation::DBGenerationData::generateCircleQuadrantData(RoadQuadrant
 		xmin = ROAD_RECT_LENGTH;
 		xmax = ROAD_RECT_LENGTH + ROAD_RECT_LARGE_WIDTH;
 		ymin = -ROAD_RECT_LARGE_WIDTH;
-		ymax = -ROAD_RECT_SMALL_WIDTH;
+		ymax = 0.0;
 	}
 	break;
 	default:
