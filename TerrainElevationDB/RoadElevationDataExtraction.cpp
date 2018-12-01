@@ -1,14 +1,14 @@
-#include <TerrainElevationDB/DBRoadDataAnalyze.h>
+#include <TerrainElevationDB/RoadElevationDataExtraction.h>
 
-TerrainElevation::DBRoadDataAnalyze::DBRoadDataAnalyze()
+TerrainElevation::RoadElevationDataExtraction::RoadElevationDataExtraction()
 	:readDataInstance(nullptr)
 	,roadDataBlob(nullptr)
 {
-	readDataInstance = new DBReadRoadDataFromSql();
+	readDataInstance = new DatabaseRead();
 	roadDataBlob = new RoadDataBlobStruct();
 }
 
-TerrainElevation::DBRoadDataAnalyze::~DBRoadDataAnalyze()
+TerrainElevation::RoadElevationDataExtraction::~RoadElevationDataExtraction()
 {
 	if (readDataInstance)
 		delete readDataInstance;
@@ -17,7 +17,7 @@ TerrainElevation::DBRoadDataAnalyze::~DBRoadDataAnalyze()
 		delete roadDataBlob;
 }
 
-void TerrainElevation::DBRoadDataAnalyze::roadPointsInterp(std::vector<Pointf>& vecPoints)
+void TerrainElevation::RoadElevationDataExtraction::roadPointsInterp(std::vector<Pointf>& vecPoints)
 {
 	float resolution = 0.005;
 
@@ -55,7 +55,7 @@ void TerrainElevation::DBRoadDataAnalyze::roadPointsInterp(std::vector<Pointf>& 
 	getRoadData(vecPoints);
 }
 
-void TerrainElevation::DBRoadDataAnalyze::getRoadData(std::vector<Pointf>& vecPoints)
+void TerrainElevation::RoadElevationDataExtraction::getRoadData(std::vector<Pointf>& vecPoints)
 {
 	if (vecPoints.empty())
 		return;
@@ -83,7 +83,7 @@ void TerrainElevation::DBRoadDataAnalyze::getRoadData(std::vector<Pointf>& vecPo
 	
 }
 
-void TerrainElevation::DBRoadDataAnalyze::getZValue(Pointf & point)
+void TerrainElevation::RoadElevationDataExtraction::getZValue(Pointf & point)
 {
 	int i = 0, j = 0;
 	float resolution = 0.005;
@@ -104,25 +104,26 @@ void TerrainElevation::DBRoadDataAnalyze::getZValue(Pointf & point)
 	point.z += roadDataBlob->zdata[i * 100 + j];
 }
 
-bool TerrainElevation::DBRoadDataAnalyze::isRoadDataBlobEmpty()
+bool TerrainElevation::RoadElevationDataExtraction::isRoadDataBlobEmpty()
 {
 	return roadDataBlob->isEmpty();
 }
 
-bool TerrainElevation::DBRoadDataAnalyze::currentPointIsInBlob(Pointf & point)
+bool TerrainElevation::RoadElevationDataExtraction::currentPointIsInBlob(Pointf & point)
 {
 
 	return (roadDataBlob->xmin <= point.x) && (roadDataBlob->xmax > point.x) && (roadDataBlob->ymin <= point.y) && (roadDataBlob->ymax > point.y);
 }
 
-void TerrainElevation::DBRoadDataAnalyze::readCurrentPointBlob(Pointf & point)
+void TerrainElevation::RoadElevationDataExtraction::readCurrentPointBlob(Pointf & point)
 {
 	roadDataBlob->setData(point);
 
 	if (readDataInstance != nullptr)
 	{
-		float *zdata;
+		/*float *zdata;
 		zdata = readDataInstance->readData(roadDataBlob->xmin, roadDataBlob->xmax, roadDataBlob->ymin, roadDataBlob->ymax);
-		memcpy(roadDataBlob->zdata, zdata, sizeof(float) * DB_BLOB_SIZE);
+		memcpy(roadDataBlob->zdata, zdata, sizeof(float) * DB_BLOB_SIZE);*/
+		roadDataBlob->zdata = readDataInstance->readData(roadDataBlob->xmin, /*roadDataBlob->xmax, */roadDataBlob->ymin/*, roadDataBlob->ymax*/);
 	}
 }

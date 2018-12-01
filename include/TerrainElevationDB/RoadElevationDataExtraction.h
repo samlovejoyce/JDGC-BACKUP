@@ -4,7 +4,7 @@
 
 #include <TerrainElevationDB/Export.h>
 #include <TerrainElevationDB/CommDefine.h>
-#include <TerrainElevationDB/DBReadRoadDataFromSql.h>
+#include <TerrainElevationDB/DatabaseRead.h>
 
 #include <vector>
 
@@ -15,11 +15,11 @@ namespace TerrainElevation
 	 * 主要功能：根据一系列输入的点获取这些输入点的高程，
 	 * 所有数据存储在数据库中
 	 */
-	class TERRAINELEVATIONDB_PAI DBRoadDataAnalyze
+	class TERRAINELEVATIONDB_PAI RoadElevationDataExtraction
 	{
 	public:
-		DBRoadDataAnalyze();
-		~DBRoadDataAnalyze();
+		RoadElevationDataExtraction();
+		~RoadElevationDataExtraction();
 
 		/** 对给定的一系列点进行线性插值 */
 		void roadPointsInterp(std::vector<Pointf> &vecPoints);
@@ -41,7 +41,7 @@ namespace TerrainElevation
 		void readCurrentPointBlob(Pointf &point);
 
 	private:
-		DBReadRoadDataFromSql *readDataInstance;
+		DatabaseRead *readDataInstance;
 		RoadDataBlobStruct *roadDataBlob;
 
 		std::vector<Pointf> vPointf;

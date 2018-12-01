@@ -1,16 +1,16 @@
-#include <TerrainElevationDB/DBRoadShapeData.h>
+#include <TerrainElevationDB/RoadModel.h>
 #include <cmath>
 
-TerrainElevation::DBRoadShapeData::DBRoadShapeData()
+TerrainElevation::RoadModel::RoadModel()
 {
 	initRoadShapeData();
 }
 
-TerrainElevation::DBRoadShapeData::~DBRoadShapeData()
+TerrainElevation::RoadModel::~RoadModel()
 {
 }
 
-bool TerrainElevation::DBRoadShapeData::isInRoadRectArea(float x, float y)
+bool TerrainElevation::RoadModel::isInRoadRectArea(float x, float y)
 {
 	if(isInRectArea(x, y, roadRectFirstQuadrant) || isInRectArea(x, y, roadRectSecondQuadrant) ||
 		isInRectArea(x, y, roadRectThirdQuadrant) || isInRectArea(x, y, roadRectFourthQuadrant)
@@ -19,7 +19,7 @@ bool TerrainElevation::DBRoadShapeData::isInRoadRectArea(float x, float y)
 	return false;
 }
 
-bool TerrainElevation::DBRoadShapeData::isInRoadCircleArea(float x, float y)
+bool TerrainElevation::RoadModel::isInRoadCircleArea(float x, float y)
 {
 	if (isInCircleArea(x, y, roadCircleFirstQuadrant) || isInCircleArea(x, y, roadCircleSecondQuadrant) ||
 		isInCircleArea(x, y, roadCircleThirdQuadrant) || isInCircleArea(x, y, roadCircleFourthQuadrant))
@@ -32,7 +32,7 @@ bool TerrainElevation::DBRoadShapeData::isInRoadCircleArea(float x, float y)
  * 判定原理是：如果点在该矩形区域内，则该点与矩形的四个点构成的四个三角形的面积等于矩形的面积
  * 否则，该点不在矩形区域内。
  */
-bool TerrainElevation::DBRoadShapeData::isInRectArea(float x, float y, RoadRectStruct rect)
+bool TerrainElevation::RoadModel::isInRectArea(float x, float y, RoadRectStruct rect)
 {
 	bool ret = false;
 	/** 判定输入值是否是有效的值 */
@@ -59,7 +59,7 @@ bool TerrainElevation::DBRoadShapeData::isInRectArea(float x, float y, RoadRectS
  * 判定原理：点到圆心的距离小于圆环外圆半径且大于圆环内圆半径，
  * 否则，该点不在圆环区域内
  */
-bool TerrainElevation::DBRoadShapeData::isInCircleArea(float x, float y, RoadCircleStruct circle)
+bool TerrainElevation::RoadModel::isInCircleArea(float x, float y, RoadCircleStruct circle)
 {
 	/** 判定输入值是否是有效的值 */
 	if (abs(x) < ROAD_RECT_LENGTH )
@@ -86,7 +86,7 @@ bool TerrainElevation::DBRoadShapeData::isInCircleArea(float x, float y, RoadCir
 	return checkInQuadrant(x, y, circle);
 }
 
-void TerrainElevation::DBRoadShapeData::initRoadShapeData()
+void TerrainElevation::RoadModel::initRoadShapeData()
 {
 	/* 跑道的四个矩形的数据 */
 	roadRectFirstQuadrant.bottom = Pointf(0.0, ROAD_RECT_SMALL_WIDTH);
@@ -128,19 +128,19 @@ void TerrainElevation::DBRoadShapeData::initRoadShapeData()
 	roadCircleFourthQuadrant.outRadius = ROAD_CIRCLE_OUT_RADIUS;
 }
 
-float TerrainElevation::DBRoadShapeData::getRectArea(RoadRectStruct rect)
+float TerrainElevation::RoadModel::getRectArea(RoadRectStruct rect)
 {
 	float aera = trangleArea(rect.bottom, rect.left, rect.right) + trangleArea(rect.right, rect.top, rect.left);
 	return aera;
 }
 
-float TerrainElevation::DBRoadShapeData::trangleArea(Pointf p1, Pointf p2, Pointf p3)
+float TerrainElevation::RoadModel::trangleArea(Pointf p1, Pointf p2, Pointf p3)
 {
 	float area = (p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) / 2.0;
 	return abs(area);
 }
 
-RoadQuadrantEnum TerrainElevation::DBRoadShapeData::getPointQuadrant(float x, float y)
+RoadQuadrantEnum TerrainElevation::RoadModel::getPointQuadrant(float x, float y)
 {
 
 	RoadQuadrantEnum quadrant = RunwayQuadrantCount;
@@ -161,7 +161,7 @@ RoadQuadrantEnum TerrainElevation::DBRoadShapeData::getPointQuadrant(float x, fl
 	return quadrant;
 }
 
-bool TerrainElevation::DBRoadShapeData::checkInQuadrant(float x, float y, RoadCircleStruct circle)
+bool TerrainElevation::RoadModel::checkInQuadrant(float x, float y, RoadCircleStruct circle)
 {
 	RoadQuadrantEnum quadrant = RunwayQuadrantCount;
 	quadrant = getPointQuadrant(x, y);

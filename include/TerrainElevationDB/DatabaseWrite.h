@@ -3,20 +3,20 @@
 
 #include <TerrainElevationDB/Export.h>
 #include <TerrainElevationDB/CommDefine.h>
-#include <TerrainElevationDB/DBMysqlEngine.h>
+#include <TerrainElevationDB/Database.h>
 
 namespace TerrainElevation
 {
-	class TERRAINELEVATIONDB_PAI DBWriteRoadDataToSql
+	class TERRAINELEVATIONDB_PAI DatabaseWrite
 	{
 	public:
-		DBWriteRoadDataToSql();
-		~DBWriteRoadDataToSql();
+		DatabaseWrite();
+		~DatabaseWrite();
 
 		void writeData(float x, float y, float *zdata);
 
 	private:
-		DBMysqlEngine *mySqlEngine;
+		Database *db;
 
 	};
 }

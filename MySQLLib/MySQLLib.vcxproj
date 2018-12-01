@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2F77A71A-356B-4E32-84B3-0C6EF5717A12}</ProjectGuid>
+    <ProjectGuid>{7654439A-B02B-4B4E-B6CE-5A8E17D36388}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TerrainElevationDB</RootNamespace>
+    <RootNamespace>MySQLLib</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,6 +76,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin</OutDir>
     <TargetName>$(ProjectName)d</TargetName>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\include;D:\mysql-8.0.12-winx64\include;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -83,6 +84,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin</OutDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\include;D:\mysql-8.0.12-winx64\include;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -104,15 +106,13 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;TERRAINELEVATIONDB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;MYSQLLIB_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\include;D:\mysql-8.0.12-winx64\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>..\lib\$(TargetName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>D:\mysql-8.0.12-winx64\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\mysql-8.0.12-winx64\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>libmysql.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -142,38 +142,30 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;TERRAINELEVATIONDB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;MYSQLLIB_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\include;D:\mysql-8.0.12-winx64\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>..\lib\$(TargetName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>D:\mysql-8.0.12-winx64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libmysql.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\mysql-8.0.12-winx64\lib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\TerrainElevationDB\CommDefine.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\Database.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataGeneration.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\DatabaseRead.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataExtraction.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\RoadModel.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\DatabaseWrite.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\Export.h" />
+    <ClInclude Include="..\include\MySQLLib\Binary.h" />
+    <ClInclude Include="..\include\MySQLLib\Database.h" />
+    <ClInclude Include="..\include\MySQLLib\DatabaseException.h" />
+    <ClInclude Include="..\include\MySQLLib\Export.h" />
+    <ClInclude Include="..\include\MySQLLib\ParamBuffer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\include\TerrainElevationDB\CommDefine.cpp" />
-    <ClCompile Include="Database.cpp" />
-    <ClCompile Include="RoadElevationDataGeneration.cpp" />
-    <ClCompile Include="DatabaseRead.cpp" />
-    <ClCompile Include="RoadElevationDataExtraction.cpp" />
-    <ClCompile Include="RoadModel.cpp" />
-    <ClCompile Include="DatabaseWrite.cpp" />
+    <ClCompile Include="..\source\MySQLLib\Binary.cpp" />
+    <ClCompile Include="..\source\MySQLLib\Database.cpp" />
+    <ClCompile Include="..\source\MySQLLib\DatabaseException.cpp" />
+    <ClCompile Include="..\source\MySQLLib\ParamBuffer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

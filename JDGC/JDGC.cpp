@@ -14,7 +14,7 @@
 //#include <TerrainElevationDB/DBWriteRoadDataToSql.h>
 
 //#include <TerrainElevationDB/DBGenerationData.h>
-#include <TerrainElevationDB/DBRoadDataAnalyze.h>
+#include <TerrainElevationDB/RoadElevationDataExtraction.h>
 
 int main()
 {
@@ -49,7 +49,7 @@ int main()
 
 
 	/** 访问数据库，获取一系列点的高程 */
-	TerrainElevation::DBRoadDataAnalyze *roadDataAnalyze = new TerrainElevation::DBRoadDataAnalyze();
+	TerrainElevation::RoadElevationDataExtraction *roadDataAnalyze = new TerrainElevation::RoadElevationDataExtraction();
 	
 	std::vector<Pointf> vecPoint;
 	vecPoint.push_back(Pointf(15.0, 119.3));

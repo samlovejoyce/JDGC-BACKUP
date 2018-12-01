@@ -1,16 +1,16 @@
-#include <TerrainElevationDB/DBGenerationData.h>
+#include <TerrainElevationDB/RoadElevationDataGeneration.h>
 #include <time.h>
 
 
-TerrainElevation::DBGenerationData::DBGenerationData()
+TerrainElevation::RoadElevationDataGeneration::RoadElevationDataGeneration()
 	:dbRoadShapeData(nullptr)
 	,dbWriteRoadDataToSql(nullptr)
 {
-	dbRoadShapeData = new DBRoadShapeData();
-	dbWriteRoadDataToSql = new DBWriteRoadDataToSql();
+	dbRoadShapeData = new RoadModel();
+	dbWriteRoadDataToSql = new DatabaseWrite();
 }
 
-TerrainElevation::DBGenerationData::~DBGenerationData()
+TerrainElevation::RoadElevationDataGeneration::~RoadElevationDataGeneration()
 {
 	if (dbRoadShapeData && dbWriteRoadDataToSql)
 	{
@@ -19,7 +19,7 @@ TerrainElevation::DBGenerationData::~DBGenerationData()
 	}
 }
 
-void TerrainElevation::DBGenerationData::generateRectBlobData(float x, float y)
+void TerrainElevation::RoadElevationDataGeneration::generateRectBlobData(float x, float y)
 {	
 	float resulotion = 0.005;
 	time_t tm = time(0);
@@ -62,7 +62,7 @@ void TerrainElevation::DBGenerationData::generateRectBlobData(float x, float y)
 	}
 }
 
-void TerrainElevation::DBGenerationData::generateCircleBolbData(float x, float y)
+void TerrainElevation::RoadElevationDataGeneration::generateCircleBolbData(float x, float y)
 {
 	float resulotion = 0.005;
 	time_t tm = time(0);
@@ -106,7 +106,7 @@ void TerrainElevation::DBGenerationData::generateCircleBolbData(float x, float y
 	}
 }
 
-void TerrainElevation::DBGenerationData::generateRoadData()
+void TerrainElevation::RoadElevationDataGeneration::generateRoadData()
 {
 	/**
 	 * x、y每次增量0.5
@@ -116,22 +116,22 @@ void TerrainElevation::DBGenerationData::generateRoadData()
 	 */
 
 
-	 generateDataThread[0] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantFirst);
-	 generateDataThread[1] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantSecond);
-	 generateDataThread[2] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantThird);
-	 generateDataThread[3] = std::thread(&DBGenerationData::generateRectangleQuadrantData, this, RunwayQuadrantFouth);
+	 generateDataThread[0] = std::thread(&RoadElevationDataGeneration::generateRectangleQuadrantData, this, RunwayQuadrantFirst);
+	 generateDataThread[1] = std::thread(&RoadElevationDataGeneration::generateRectangleQuadrantData, this, RunwayQuadrantSecond);
+	 generateDataThread[2] = std::thread(&RoadElevationDataGeneration::generateRectangleQuadrantData, this, RunwayQuadrantThird);
+	 generateDataThread[3] = std::thread(&RoadElevationDataGeneration::generateRectangleQuadrantData, this, RunwayQuadrantFouth);
 
-	 generateDataThread[4] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantFirst);
-	 generateDataThread[5] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantSecond);
-	 generateDataThread[6] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantThird);
-	 generateDataThread[7] = std::thread(&DBGenerationData::generateCircleQuadrantData, this, RunwayQuadrantFouth);
+	 generateDataThread[4] = std::thread(&RoadElevationDataGeneration::generateCircleQuadrantData, this, RunwayQuadrantFirst);
+	 generateDataThread[5] = std::thread(&RoadElevationDataGeneration::generateCircleQuadrantData, this, RunwayQuadrantSecond);
+	 generateDataThread[6] = std::thread(&RoadElevationDataGeneration::generateCircleQuadrantData, this, RunwayQuadrantThird);
+	 generateDataThread[7] = std::thread(&RoadElevationDataGeneration::generateCircleQuadrantData, this, RunwayQuadrantFouth);
 	
 	for (int i = 0; i < 8; i++)
 		generateDataThread[i].join();
 
 }
 
-void TerrainElevation::DBGenerationData::generateRectangleQuadrantData(RoadQuadrantEnum roadQuadrant)
+void TerrainElevation::RoadElevationDataGeneration::generateRectangleQuadrantData(RoadQuadrantEnum roadQuadrant)
 {
 	float xmin = 0.0, xmax = 0.0, ymin = 0.0, ymax = 0.0;
 	float resulotion = 0.5;
@@ -187,7 +187,7 @@ void TerrainElevation::DBGenerationData::generateRectangleQuadrantData(RoadQuadr
 	}
 }
 
-void TerrainElevation::DBGenerationData::generateCircleQuadrantData(RoadQuadrantEnum roadQuadrant)
+void TerrainElevation::RoadElevationDataGeneration::generateCircleQuadrantData(RoadQuadrantEnum roadQuadrant)
 {
 	std::mutex tempMutex;
 	tempMutex.lock();

@@ -7,7 +7,6 @@ use terrain_elevation_db;
 -- 创建存储表 --
 drop table if exists terrain_elevation_table;
 create table if not exists terrain_elevation_table(
-	id int primary key auto_increment,
 	x	float,
 	y	float,
 	zdata blob

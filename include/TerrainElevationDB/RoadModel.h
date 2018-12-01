@@ -10,11 +10,11 @@ namespace TerrainElevation
 	/**
 	 * 构成道路模型的数据类
 	 */
-	class TERRAINELEVATIONDB_PAI DBRoadShapeData
+	class TERRAINELEVATIONDB_PAI RoadModel
 	{
 	public:
-		DBRoadShapeData();
-		~DBRoadShapeData();
+		RoadModel();
+		~RoadModel();
 
 		/** 点是否在构造的道路形状区域内 */
 		bool isInRoadRectArea(float x, float y);

@@ -242,3 +242,9 @@ ModelManifest.xml
 .fake/
 /lib
 /TerrainElevationDB/DBRunwayData.cpp
+/doc/人体生物力学模型的驾驶舒适度仿真研究.pdf
+/doc/面向用户的汽车道路谱重构方法.pdf
+/doc/路面不平度的数学模型及计算机模拟研究.pdf
+/doc/电子技术与软件工程-基于osgEarth的地形建模仿真 .pdf
+/doc/汽车三维虚拟道路重构系统的设计与实现.pdf
+/include/MySQLLib

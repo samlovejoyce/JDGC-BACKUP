@@ -12,6 +12,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MatlabEnginePub", "MatlabEn
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerrainElevationDB", "TerrainElevationDB\TerrainElevationDB.vcxproj", "{2F77A71A-356B-4E32-84B3-0C6EF5717A12}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MySQLLib", "MySQLLib\MySQLLib.vcxproj", "{7654439A-B02B-4B4E-B6CE-5A8E17D36388}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -44,6 +46,14 @@ Global
 		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Release|x64.Build.0 = Release|x64
 		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Release|x86.ActiveCfg = Release|Win32
 		{2F77A71A-356B-4E32-84B3-0C6EF5717A12}.Release|x86.Build.0 = Release|Win32
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Debug|x64.ActiveCfg = Debug|x64
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Debug|x64.Build.0 = Debug|x64
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Debug|x86.ActiveCfg = Debug|Win32
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Debug|x86.Build.0 = Debug|Win32
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Release|x64.ActiveCfg = Release|x64
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Release|x64.Build.0 = Release|x64
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Release|x86.ActiveCfg = Release|Win32
+		{7654439A-B02B-4B4E-B6CE-5A8E17D36388}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

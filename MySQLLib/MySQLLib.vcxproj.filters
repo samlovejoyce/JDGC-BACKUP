@@ -15,51 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\TerrainElevationDB\Export.h">
+    <ClInclude Include="..\include\MySQLLib\Binary.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\CommDefine.h">
+    <ClInclude Include="..\include\MySQLLib\Database.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\RoadModel.h">
+    <ClInclude Include="..\include\MySQLLib\DatabaseException.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\Database.h">
+    <ClInclude Include="..\include\MySQLLib\Export.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\DatabaseRead.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\DatabaseWrite.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataExtraction.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataGeneration.h">
+    <ClInclude Include="..\include\MySQLLib\ParamBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\include\TerrainElevationDB\CommDefine.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RoadModel.cpp">
+    <ClCompile Include="..\source\MySQLLib\DatabaseException.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Database.cpp">
+    <ClCompile Include="..\source\MySQLLib\Database.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DatabaseRead.cpp">
+    <ClCompile Include="..\source\MySQLLib\Binary.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DatabaseWrite.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RoadElevationDataExtraction.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="RoadElevationDataGeneration.cpp">
+    <ClCompile Include="..\source\MySQLLib\ParamBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

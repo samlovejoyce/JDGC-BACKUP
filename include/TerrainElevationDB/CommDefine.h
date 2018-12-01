@@ -89,19 +89,21 @@ struct RoadDataBlobStruct
 	float xmax;					/** 数据块x的最大值 */
 	float ymin;					/** 数据块y的最小值 */
 	float ymax;					/** 数据块y的最大值 */
-	float zdata[DB_BLOB_SIZE];
+	float *zdata;
 
 	/** 默认构造函数 */
 	RoadDataBlobStruct() :xmin(0.0), xmax(0.0), ymin(0.0), ymax(0.0)
 	{
-		memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
+		zdata = nullptr;
+		//memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
 	}
 
 	/** 构造函数 */
 	RoadDataBlobStruct(float x1, float y1, float x2, float y2)
 	{
 		xmin = x1; xmax = x2; ymin = y1; ymax = y2;
-		memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
+		zdata = nullptr;
+		//memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
 	}
 
 	/** 数据是否有效 */

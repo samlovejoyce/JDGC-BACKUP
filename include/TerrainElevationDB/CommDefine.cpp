@@ -4,8 +4,8 @@ float Math::interpolate(std::vector<float> &xData, std::vector<float> &yData, fl
 {
 	int size = xData.size();
 
-	int i = 0;                                                                  // find left end of interval for interpolation
-	if (xi >= xData[size - 2])                                                 // special case: beyond right end
+	int i = 0;																		// find left end of interval for interpolation
+	if (xi >= xData[size - 2])														// special case: beyond right end
 	{
 		i = size - 2;
 	}
@@ -14,16 +14,16 @@ float Math::interpolate(std::vector<float> &xData, std::vector<float> &yData, fl
 		while (xi > xData[i + 1]) i++;
 	}
 
-	float xL = xData[i], yL = yData[i], xR = xData[i + 1], yR = yData[i + 1];      // points on either side (unless beyond ends)
+	float xL = xData[i], yL = yData[i], xR = xData[i + 1], yR = yData[i + 1];		// points on either side (unless beyond ends)
 
 	/*if (!extrapolate)
 	{
 		if (xi < xL) yR = yL;
 		if (xi > xR) yL = yR;
 	}*/
-	double dydx = (yR - yL) / (xR - xL);                                    // gradient
+	double dydx = (yR - yL) / (xR - xL);											// gradient
 
-	return yL + dydx * (xi - xL);                                              // linear interpolation
+	return yL + dydx * (xi - xL);													// linear interpolation
 
 }
 

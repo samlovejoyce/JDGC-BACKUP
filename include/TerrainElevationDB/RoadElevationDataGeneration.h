@@ -3,19 +3,19 @@
 
 #include <TerrainElevationDB/Export.h>
 #include <TerrainElevationDB/CommDefine.h>
-#include <TerrainElevationDB/DBRoadShapeData.h>
-#include <TerrainElevationDB/DBWriteRoadDataToSql.h>
+#include <TerrainElevationDB/RoadModel.h>
+#include <TerrainElevationDB/DatabaseWrite.h>
 
 #include <mutex>
 #include <thread>
 
 namespace TerrainElevation
 {
-	class TERRAINELEVATIONDB_PAI DBGenerationData
+	class TERRAINELEVATIONDB_PAI RoadElevationDataGeneration
 	{
 	public:
-		DBGenerationData();
-		~DBGenerationData();
+		RoadElevationDataGeneration();
+		~RoadElevationDataGeneration();
 
 		/**
 		 * 生成单个数据块的数据
@@ -35,8 +35,8 @@ namespace TerrainElevation
 		void generateCircleQuadrantData(RoadQuadrantEnum roadQuadrant);
 
 	private:
-		DBRoadShapeData *dbRoadShapeData;
-		DBWriteRoadDataToSql *dbWriteRoadDataToSql;
+		RoadModel *dbRoadShapeData;
+		DatabaseWrite *dbWriteRoadDataToSql;
 
 		std::mutex tempMutex;
 		std::thread generateDataThread[8];

@@ -1,33 +1,33 @@
-#include <TerrainElevationDB/DBMysqlEngine.h>
+#include <TerrainElevationDB/Database.h>
 #include <TerrainElevationDB/CommDefine.h>
 
 #include <stdio.h>
 
 using namespace TerrainElevation;
 
-DBMysqlEngine* DBMysqlEngine::instance = nullptr;
+Database* Database::instance = nullptr;
 
-DBMysqlEngine::DBMysqlEngine()
+Database::Database()
 	:db(nullptr)
 {
 	connectDB();
 }
 
-DBMysqlEngine::~DBMysqlEngine()
+Database::~Database()
 {
 	closeDB();
 }
 
-DBMysqlEngine * DBMysqlEngine::getInstance()
+Database * Database::getInstance()
 {
 	if (instance == nullptr)
 	{
-		instance = new DBMysqlEngine();
+		instance = new Database();
 	}
 	return instance;
 }
 
-bool DBMysqlEngine::connectDB()
+bool Database::connectDB()
 {
 	if (!db)
 	{
@@ -59,7 +59,7 @@ bool DBMysqlEngine::connectDB()
 	return true;
 }
 
-MYSQL_RES * TerrainElevation::DBMysqlEngine::queryDB(MYSQL * pdb, const char * query)
+MYSQL_RES * TerrainElevation::Database::queryDB(MYSQL * pdb, const char * query)
 {
 	MYSQL_RES *res = nullptr;
 	if (mysql_real_query(pdb, query, strlen(query)) != 0)
@@ -74,7 +74,7 @@ MYSQL_RES * TerrainElevation::DBMysqlEngine::queryDB(MYSQL * pdb, const char * q
 	return res;
 }
 
-void DBMysqlEngine::closeDB()
+void Database::closeDB()
 {
 	if (db)
 	{

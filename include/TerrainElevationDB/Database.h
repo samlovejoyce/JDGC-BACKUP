@@ -7,13 +7,13 @@
 
 namespace TerrainElevation {
 
-	class TERRAINELEVATIONDB_PAI DBMysqlEngine
+	class TERRAINELEVATIONDB_PAI Database
 	{
 	public:
-		~DBMysqlEngine();
+		~Database();
 
 		/** 返回数据库实例指针 */
-		static DBMysqlEngine* getInstance();
+		static Database* getInstance();
 
 		/** 连接到数据库服务是否成功 */
 		bool connectDB();
@@ -28,8 +28,8 @@ namespace TerrainElevation {
 		MYSQL* getDB() { return db; }
 
 	private:
-		static DBMysqlEngine* instance;
-		DBMysqlEngine();
+		static Database* instance;
+		Database();
 
 		MYSQL *db;
 	};
