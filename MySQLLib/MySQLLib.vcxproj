@@ -159,6 +159,7 @@
     <ClInclude Include="..\include\MySQLLib\Database.h" />
     <ClInclude Include="..\include\MySQLLib\DatabaseException.h" />
     <ClInclude Include="..\include\MySQLLib\Export.h" />
+    <ClInclude Include="..\include\MySQLLib\Nullable.h" />
     <ClInclude Include="..\include\MySQLLib\ParamBuffer.h" />
   </ItemGroup>
   <ItemGroup>
