@@ -80,7 +80,6 @@ void TerrainElevation::RoadElevationDataExtraction::getRoadData(std::vector<Poin
 			getZValue(*it);
 		}
 	}
-	
 }
 
 void TerrainElevation::RoadElevationDataExtraction::getZValue(Pointf & point)
