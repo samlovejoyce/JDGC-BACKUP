@@ -36,7 +36,7 @@ bool TerrainElevation::RoadModel::isInRectArea(float x, float y, RoadRectStruct 
 {
 	bool ret = false;
 	/** 判定输入值是否是有效的值 */
-	if (abs(x) < ROAD_RECT_LENGTH && abs(y) < ROAD_RECT_SMALL_WIDTH)
+	if (abs(y) < ROAD_RECT_SMALL_WIDTH)
 		return ret;
 	
 	Pointf pt(x, y);
