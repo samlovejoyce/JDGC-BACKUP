@@ -159,14 +159,18 @@
   <ItemGroup>
     <ClInclude Include="..\include\MatlabEnginePub\CommDefine.h" />
     <ClInclude Include="..\include\MatlabEnginePub\Export.h" />
-    <ClInclude Include="..\include\MatlabEnginePub\MatlabEngineBase.h" />
+    <ClInclude Include="..\include\MatlabEnginePub\ConnectMatlab.h" />
+    <ClInclude Include="..\include\MatlabEnginePub\CMatlab.h" />
     <ClInclude Include="..\include\MatlabEnginePub\MEOpenCRG.h" />
     <ClInclude Include="..\include\MatlabEnginePub\MERoadPSD.h" />
+    <ClInclude Include="..\include\MatlabEnginePub\OpenCRG.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MatlabEngineBase.cpp" />
+    <ClCompile Include="CMatlab.cpp" />
+    <ClCompile Include="ConnectMatlab.cpp" />
     <ClCompile Include="MEOpenCRG.cpp" />
     <ClCompile Include="MERoadPSD.cpp" />
+    <ClCompile Include="OpenCRG.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

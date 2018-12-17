@@ -3,7 +3,7 @@
 
 #include <MatlabEnginePub/Export.h>
 #include <MatlabEnginePub/CommDefine.h>
-#include <MatlabEnginePub/MatlabEngineBase.h>
+#include <MatlabEnginePub/ConnectMatlab.h>
 
 #include <matrix.h>
 
@@ -57,7 +57,7 @@ namespace MatlabEngine {
 		CrgData *crgDataStruct;
 		double *crgDataZ;
 
-		MatlabEngineBase *matlabEngineBase;
+		ConnectMatlab *matlabEngineBase;
 
 	};
 }

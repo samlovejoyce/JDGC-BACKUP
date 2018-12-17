@@ -16,7 +16,7 @@ MatlabEngine::MEOpenCRG::MEOpenCRG()
 	, pCrgDataPhi(nullptr)
 	,matlabEngineBase(nullptr)
 {
-	matlabEngineBase = MatlabEngineBase::getInstancePrt();
+	matlabEngineBase = ConnectMatlab::getInstance();
 	changeMatlabWorkPathToCRG();
 }
 
@@ -36,7 +36,7 @@ void MatlabEngine::MEOpenCRG::loadCrgData(const std::string crgFile)
 	std::string retFiledName = "data";
 	command = retFiledName + " = crg_read( \'" + crgFile + "\');";
 
-	if(matlabEngineBase->runMatlabCommand(command))
+	if(matlabEngineBase->runMatlabCmd(command))
 		pCrgData = engGetVariable(matlabEngineBase->getMatlabEngine(), retFiledName.c_str());
 }
 
@@ -45,7 +45,7 @@ bool MatlabEngine::MEOpenCRG::saveCrgData(const std::string crgFile)
 	std::string command = CRG_DATA;
 	command = "ans = crg_single(" + command + ");";
 
-	if (!matlabEngineBase->runMatlabCommand(command))
+	if (!matlabEngineBase->runMatlabCmd(command))
 	{
 		return false;
 		
@@ -53,7 +53,7 @@ bool MatlabEngine::MEOpenCRG::saveCrgData(const std::string crgFile)
 	command = CRG_DATA;
 	command = "crg_write(ans, \'" + crgFile + "\');";
 
-	if (!matlabEngineBase->runMatlabCommand(command))
+	if (!matlabEngineBase->runMatlabCmd(command))
 		return false;
 
 	return true;
@@ -64,11 +64,11 @@ void MatlabEngine::MEOpenCRG::changeMatlabWorkPathToCRG(const std::string path /
 	std::string command;
 	command = "cd " + path + ";";
 
-	if (matlabEngineBase->runMatlabCommand(command))
+	if (matlabEngineBase->runMatlabCmd(command))
 	{
 		command = "crg_init;";
 
-		if ( !matlabEngineBase->runMatlabCommand(command) )
+		if ( !matlabEngineBase->runMatlabCmd(command) )
 			return;
 	}
 }

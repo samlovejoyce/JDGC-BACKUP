@@ -14,7 +14,8 @@
 //#include <TerrainElevationDB/DBWriteRoadDataToSql.h>
 
 //#include <TerrainElevationDB/DBGenerationData.h>
-#include <TerrainElevationDB/RoadElevationDataExtraction.h>
+//#include <TerrainElevationDB/RoadElevationDataExtraction.h>
+#include <TerrainElevationDB/Database.h>
 
 int main()
 {
@@ -49,7 +50,7 @@ int main()
 
 
 	/** 访问数据库，获取一系列点的高程 */
-	TerrainElevation::RoadElevationDataExtraction *roadDataAnalyze = new TerrainElevation::RoadElevationDataExtraction();
+	/*TerrainElevation::RoadElevationDataExtraction *roadDataAnalyze = new TerrainElevation::RoadElevationDataExtraction();
 	
 	std::vector<Pointf> vecPoint;
 	vecPoint.push_back(Pointf(15.0, 119.3));
@@ -61,7 +62,10 @@ int main()
 	std::cout << "Start:" << stNow.wMinute << ":" << stNow.wSecond << ":" << stNow.wMilliseconds << std::endl;
 	roadDataAnalyze->roadPointsInterp(vecPoint);
 	GetSystemTime(&stNow);
-	std::cout << "End:" << stNow.wMinute << ":" << stNow.wSecond << ":" << stNow.wMilliseconds << std::endl;
+	std::cout << "End:" << stNow.wMinute << ":" << stNow.wSecond << ":" << stNow.wMilliseconds << std::endl;*/
+
+	TerrainElevation::Database *db = TerrainElevation::Database::getInstance();
+	bool ret = db->connectDB();
 
 	getchar();
     return 0;

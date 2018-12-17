@@ -4,6 +4,8 @@
 #ifndef DATASTRUCTDEF_H
 #define DATASTRUCTDEF_H
 
+#include <vector>
+
 #define STRING_CONNECT_MAC(parent, ...) (parent##"."##__VA_ARGS__)
 
 /* crgData数据结构所包含的域名 */
@@ -33,6 +35,10 @@ const char* crgDataFiledName[] =
 /** crg数据结构字段长度 */
 #define CRG_DATA_FILED_LENGTH 7
 
+
+/************************************************************************/
+/*                                                                      */
+/************************************************************************/
 /**  crg数据结构 */
 struct CrgData
 {
@@ -118,5 +124,59 @@ struct CrgData
 
 /** openCRG的MATLAB库所在文件 */
 #define CRG_MATLAB_LIB_PATH "..\\OpenCRG.1.1.2\\matlab"
+
+
+/************************************************************************/
+/*                                                                      */
+/************************************************************************/
+
+/**
+ * 构成CRG曲线的基本数据组成
+ */
+struct RoadCurveBase
+{
+	float length;
+	float radiusStart;
+	float radiusEnd;
+
+	RoadCurveBase():length(0.0),radiusStart(0.0),radiusEnd(0.0){}
+	
+	RoadCurveBase &operator=(const RoadCurveBase other) {
+		length = other.length;
+		radiusStart = other.radiusStart;
+		radiusEnd = other.radiusEnd;
+		return *this;
+	}
+};
+
+/**
+ * 道路曲率数据
+ */
+typedef std::vector<RoadCurveBase> CURVE_VECTOR;
+
+struct CurveData
+{
+	float uben;				/** u（x）坐标的起始点 */
+	float uend;				/** u（x）坐标的结束点 */
+	float uinc;				/** u（x）坐标的增量 */
+	float vben;				/** v（y）坐标的起始点 */
+	float vend;				/** v（y）坐标的结束点 */
+	float vinc;				/** v（y）坐标的增量 */
+	CURVE_VECTOR curve;		/** 中心线曲率 */
+	CURVE_VECTOR slope;		/** 道路纵切面上（坡度）曲率 */
+	CURVE_VECTOR banking;	/** 道路横切面上的曲率 */
+
+	float *zData;			/** 道路高程数据 */
+};
+
+/**
+ * CRG数据存储类型
+ */
+enum CRGDATATYPE {
+	KRBI = 0,		// 'KRBI'  binary float32
+	KDBI,           // 'KDBI'  binary float64
+	LRFI,			// 'LRFI'  ascii single precision
+	LDFI			// 'LDFI'  ascii double precision
+};
 
 #endif

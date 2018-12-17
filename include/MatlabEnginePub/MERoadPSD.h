@@ -2,7 +2,7 @@
 #define ME_ROAD_PSD_H
 
 #include <MatlabEnginePub/Export.h>
-#include <MatlabEnginePub/MatlabEngineBase.h>
+#include <MatlabEnginePub/ConnectMatlab.h>
 
 namespace MatlabEngine
 {
@@ -21,7 +21,7 @@ namespace MatlabEngine
 		void generationData();
 
 	private:
-		MatlabEngineBase *matlabEngineBase;
+		ConnectMatlab *matlabEngineBase;
 
 
 	};

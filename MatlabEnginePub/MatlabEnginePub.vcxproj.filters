@@ -18,9 +18,6 @@
     <ClInclude Include="..\include\MatlabEnginePub\Export.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\MatlabEnginePub\MatlabEngineBase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\MatlabEnginePub\MEOpenCRG.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -30,15 +27,30 @@
     <ClInclude Include="..\include\MatlabEnginePub\MERoadPSD.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\MatlabEnginePub\ConnectMatlab.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MatlabEnginePub\CMatlab.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MatlabEnginePub\OpenCRG.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MatlabEngineBase.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="MEOpenCRG.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MERoadPSD.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectMatlab.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CMatlab.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenCRG.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
