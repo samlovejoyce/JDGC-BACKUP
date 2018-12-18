@@ -10,7 +10,7 @@ namespace TerrainElevation
 	/**
 	 * 构成道路模型的数据类
 	 */
-	class TERRAINELEVATIONDB_PAI RoadModel
+	class TERRAINELEVATIONDB_API RoadModel
 	{
 	public:
 		RoadModel();

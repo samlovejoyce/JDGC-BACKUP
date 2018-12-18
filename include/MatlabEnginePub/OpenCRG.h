@@ -9,27 +9,34 @@
 
 namespace MatlabEngine
 {
+	/************************************************************************/
+	/* 功能：CRG文件生成                                                                     */
+	/************************************************************************/
 	class MAMLATENGINEPUB_API OpenCRG
 	{
 	public:
 		OpenCRG();
 		virtual ~OpenCRG();
 
-		bool setWorkPath(std::string path);
+		bool setMatlabWorkPath(std::string path);
 
-		bool initOpenCRGLibEnv();
+		/** 设置CRG参数 */
+		void setCRGParamters(RoadCurveData *data, const std::string commnet);
 
-		void setOpenCRGData(CurveData *data);
-
-		void setComment(const std::string commnet);
-
-		void setParmaterToMatlab();
-		void update();
-
-	protected:
-		/** 保存数据 */
+		/** 生成CRG数据 */
+		void generateCRGData();
+		
+		/** 保存CRG数据 */
 		void save(std::string path, CRGDATATYPE type = KRBI);
 
+	protected:
+		/** 设置CRGmatlab库函数环境 */
+		bool initOpenCRGLibEnv();
+		
+		/** 保存数据 */
+		void setOpenCRGData(RoadCurveData *data);
+		void setComment(const std::string commnet);
+		
 		void setIncArray();
 		void setUArray();
 		void setVArray();
@@ -42,7 +49,7 @@ namespace MatlabEngine
 		CMatlab *_matlab;
 		ConnectMatlab *_connectMatlab;
 
-		CurveData *_data;
+		RoadCurveData *_data;
 
 		mxArray *_comment;
 		mxArray *_zData;

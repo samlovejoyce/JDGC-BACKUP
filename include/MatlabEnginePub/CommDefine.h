@@ -15,11 +15,11 @@
 #define CRG_DATA_V "v"
 #define CRG_DATA_U "u"
 #define CRG_DATA_B "b"
-#define CRG_DATA_P "p"
+#define CRG_DATA_C "c"
 #define CRG_DATA_S "s"
 #define CRG_DATA_UINC "uinc"
 #define CRG_DATA_VINC "vinc"
-
+#define CRG_DATA_INC "inc"
 /** crg数据结构的各个字段名称 */
 const char* crgDataFiledName[] =
 {
@@ -28,7 +28,7 @@ const char* crgDataFiledName[] =
 	CRG_DATA_U,
 	CRG_DATA_CT,
 	CRG_DATA_B,
-	CRG_DATA_P,
+	CRG_DATA_C,
 	CRG_DATA_S
 };
 
@@ -154,7 +154,7 @@ struct RoadCurveBase
  */
 typedef std::vector<RoadCurveBase> CURVE_VECTOR;
 
-struct CurveData
+struct RoadCurveData
 {
 	float uben;				/** u（x）坐标的起始点 */
 	float uend;				/** u（x）坐标的结束点 */
@@ -178,5 +178,24 @@ enum CRGDATATYPE {
 	LRFI,			// 'LRFI'  ascii single precision
 	LDFI			// 'LDFI'  ascii double precision
 };
+
+static float *rowMajorToColMajor(const int row, const int col, float **data)
+{
+	float *tempData = new float[row * col];
+
+	for (int i = 0; i < col; i++)
+	{
+		for (int j = 0; j < row; j++)
+		{
+			tempData[i * row + j] = data[j][i];
+		}
+	}
+	return tempData;
+}
+
+static float *colMajorToRowMajor(const int row, const int col, float **data)
+{
+
+}
 
 #endif

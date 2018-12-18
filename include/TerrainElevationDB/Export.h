@@ -3,9 +3,9 @@
 
 
 #ifdef TERRAINELEVATIONDB_DLL
-#define TERRAINELEVATIONDB_PAI __declspec(dllexport)
+#define TERRAINELEVATIONDB_API __declspec(dllexport)
 #else
-#define  TERRAINELEVATIONDB_PAI __declspec(dllimport)
+#define  TERRAINELEVATIONDB_API __declspec(dllimport)
 #endif
 
 

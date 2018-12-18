@@ -7,7 +7,7 @@
 
 namespace TerrainElevation
 {
-	class TERRAINELEVATIONDB_PAI DatabaseWrite
+	class TERRAINELEVATIONDB_API DatabaseWrite
 	{
 	public:
 		DatabaseWrite();

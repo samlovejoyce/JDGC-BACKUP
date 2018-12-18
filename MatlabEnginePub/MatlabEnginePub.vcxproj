@@ -162,14 +162,14 @@
     <ClInclude Include="..\include\MatlabEnginePub\ConnectMatlab.h" />
     <ClInclude Include="..\include\MatlabEnginePub\CMatlab.h" />
     <ClInclude Include="..\include\MatlabEnginePub\MEOpenCRG.h" />
-    <ClInclude Include="..\include\MatlabEnginePub\MERoadPSD.h" />
+    <ClInclude Include="..\include\MatlabEnginePub\RoadPSD.h" />
     <ClInclude Include="..\include\MatlabEnginePub\OpenCRG.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMatlab.cpp" />
     <ClCompile Include="ConnectMatlab.cpp" />
     <ClCompile Include="MEOpenCRG.cpp" />
-    <ClCompile Include="MERoadPSD.cpp" />
+    <ClCompile Include="RoadPSD.cpp" />
     <ClCompile Include="OpenCRG.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

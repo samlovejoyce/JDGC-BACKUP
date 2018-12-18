@@ -11,7 +11,7 @@
 
 namespace TerrainElevation
 {
-	class TERRAINELEVATIONDB_PAI RoadElevationDataGeneration
+	class TERRAINELEVATIONDB_API RoadElevationDataGeneration
 	{
 	public:
 		RoadElevationDataGeneration();

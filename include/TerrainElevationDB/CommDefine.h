@@ -95,7 +95,6 @@ struct RoadDataBlobStruct
 	RoadDataBlobStruct() :xmin(0.0), xmax(0.0), ymin(0.0), ymax(0.0)
 	{
 		zdata = nullptr;
-		//memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
 	}
 
 	/** 构造函数 */
@@ -103,7 +102,6 @@ struct RoadDataBlobStruct
 	{
 		xmin = x1; xmax = x2; ymin = y1; ymax = y2;
 		zdata = nullptr;
-		//memset(zdata, 0, sizeof(float) * DB_BLOB_SIZE);
 	}
 
 	/** 数据是否有效 */

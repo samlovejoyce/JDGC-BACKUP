@@ -7,7 +7,7 @@
 
 namespace TerrainElevation {
 
-	class TERRAINELEVATIONDB_PAI Database
+	class TERRAINELEVATIONDB_API Database
 	{
 	public:
 		~Database();

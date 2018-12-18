@@ -7,6 +7,17 @@ namespace MatlabEngine
 		_connectMatlab = ConnectMatlab::getInstance();
 		_matlab = new CMatlab();
 		_data = nullptr;
+
+		_comment = nullptr;
+		_zData = nullptr;
+		_inc = nullptr;
+		_u = nullptr;
+		_v = nullptr;
+		_curve = nullptr;
+		_slope = nullptr;
+		_bankking = nullptr;
+
+		_CRGDataStruct = nullptr;
 	}
 
 	OpenCRG::~OpenCRG()
@@ -15,7 +26,7 @@ namespace MatlabEngine
 			delete _matlab;
 	}
 
-	bool OpenCRG::setWorkPath(std::string path)
+	bool OpenCRG::setMatlabWorkPath(std::string path)
 	{
 		if(!_connectMatlab->openMatlabEngine())
 		{
@@ -25,45 +36,78 @@ namespace MatlabEngine
 		{
 			std::string cmd;
 			cmd = "cd " + path + ";";
-
 			if (!_connectMatlab->runMatlabCmd(cmd))
 				return false;
 		}
-		return true;
+		return initOpenCRGLibEnv();
 	}
 
 	bool OpenCRG::initOpenCRGLibEnv()
 	{
 		std::string cmd;
 		cmd = "crg_init;";
-
 		if(!_connectMatlab->runMatlabCmd(cmd))
 			return false;
+
 		return true;
 	}
-	void OpenCRG::setOpenCRGData(CurveData * data)
+	void OpenCRG::setCRGParamters(RoadCurveData * data, const std::string commnet)
+	{
+		setOpenCRGData(data);
+		setComment(commnet);
+
+		setIncArray();
+		setUArray();
+		setVArray();
+		setCurveArray();
+		setSlopeArray();
+		setBankkingArray();
+
+		setZData();
+	}
+	
+	void OpenCRG::setOpenCRGData(RoadCurveData * data)
 	{
 		if (_data)
 			delete _data;
 		
 		_data = data;
 	}
+	
 	void OpenCRG::setComment(const std::string commnet)
 	{
 		_comment = _matlab->createString(commnet);
 	}
 
-	void OpenCRG::setParmaterToMatlab()
+	void OpenCRG::generateCRGData()
 	{
+		/** 创建CRG data在matlab中的结构 */
 		if (!_CRGDataStruct)
 		{
 			int ndim = 1;
 			size_t dims[] = { 1, 1 };
 			_CRGDataStruct = _matlab->createStructArray(ndim, dims, CRG_DATA_FILED_LENGTH, crgDataFiledName);
+
+			/** 设置CRG参数数据 */
+			_matlab->setFiled(_CRGDataStruct, 0, CRG_DATA_U, _u);
+			_matlab->setFiled(_CRGDataStruct, 0, CRG_DATA_V, _v);
+			_matlab->setFiled(_CRGDataStruct, 0, CRG_DATA_CT, _comment);
+			_matlab->setFiled(_CRGDataStruct, 0, CRG_DATA_Z, _zData);
 		}
-		_connectMatlab->putVariable(CRG_DATA, _CRGDataStruct);
+		if (_CRGDataStruct)
+		{
+			/** 创建uinc */
+			_connectMatlab->putVariable(CRG_DATA_INC, _inc);
 
+			/** 创建c s b */
+			_connectMatlab->putVariable(CRG_DATA_C, _curve);
+			_connectMatlab->putVariable(CRG_DATA_S, _slope);
+			_connectMatlab->putVariable(CRG_DATA_B, _bankking);
 
+			_connectMatlab->putVariable(CRG_DATA, _CRGDataStruct);
+		}
+		
+		_connectMatlab->runMatlabCmd("data = crg_gen_csb2crg0(inc, u, v, c, s, b);");
 	}
 
 	void OpenCRG::setIncArray()

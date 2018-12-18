@@ -8,7 +8,7 @@
 
 namespace TerrainElevation
 {
-	class TERRAINELEVATIONDB_PAI DatabaseRead
+	class TERRAINELEVATIONDB_API DatabaseRead
 	{
 	public:
 		DatabaseRead();
