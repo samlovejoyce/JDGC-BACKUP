@@ -1,20 +1,24 @@
 /************************************************************************/
 /*                                                                      */
 /************************************************************************/
-#include <MatlabEnginePub/MERoadPSD.h>
+#include <MatlabEnginePub/RoadPSD.h>
 
-MatlabEngine::MERoadPSD::MERoadPSD()
+namespace MatlabEngine
 {
-}
+	RoadPSD::RoadPSD()
+	{
+	}
 
-MatlabEngine::MERoadPSD::~MERoadPSD()
-{
-}
+	RoadPSD::~RoadPSD()
+	{
+	}
 
-void MatlabEngine::MERoadPSD::setRoadPSDData()
-{
-}
+	void RoadPSD::setRoadPSDData()
+	{
+	}
 
-void MatlabEngine::MERoadPSD::generationData()
-{
+	void RoadPSD::generationData()
+	{
+	}
+
 }

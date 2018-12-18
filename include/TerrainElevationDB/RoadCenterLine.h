@@ -15,17 +15,17 @@ namespace TerrainElevation
 	 * 主要功能：根据一系列输入的点获取这些输入点的高程，
 	 * 所有数据存储在数据库中
 	 */
-	class TERRAINELEVATIONDB_PAI RoadElevationDataExtraction
+	class TERRAINELEVATIONDB_API RoadCenterLine
 	{
 	public:
-		RoadElevationDataExtraction();
-		~RoadElevationDataExtraction();
+		RoadCenterLine();
+		~RoadCenterLine();
 
 		/** 对给定的一系列点进行线性插值 */
 		void roadPointsInterp(std::vector<Pointf> &vecPoints);
 
 		/** 获取给定系列坐标的z值 */
-		void getRoadData(std::vector<Pointf> &vecPoints);
+		void getRoadCenterLineData(std::vector<Pointf> &vecPoints);
 
 	protected:
 		/** 给定x，y，获取其对应的z值 */
