@@ -33,17 +33,17 @@
     <ClInclude Include="..\include\TerrainElevationDB\DatabaseWrite.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataExtraction.h">
+    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataGeneration.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataGeneration.h">
+    <ClInclude Include="..\include\TerrainElevationDB\RoadCenterLine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\TerrainElevationDB\RoadSurface.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\include\TerrainElevationDB\CommDefine.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
     <ClCompile Include="RoadModel.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -56,10 +56,16 @@
     <ClCompile Include="DatabaseWrite.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="RoadElevationDataExtraction.cpp">
+    <ClCompile Include="RoadElevationDataGeneration.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="RoadElevationDataGeneration.cpp">
+    <ClCompile Include="RoadCenterLine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\include\TerrainElevationDB\CommDefine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RoadSurface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

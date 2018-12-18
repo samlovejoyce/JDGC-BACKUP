@@ -161,19 +161,21 @@
     <ClInclude Include="..\include\TerrainElevationDB\Database.h" />
     <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataGeneration.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DatabaseRead.h" />
-    <ClInclude Include="..\include\TerrainElevationDB\RoadElevationDataExtraction.h" />
+    <ClInclude Include="..\include\TerrainElevationDB\RoadCenterLine.h" />
     <ClInclude Include="..\include\TerrainElevationDB\RoadModel.h" />
     <ClInclude Include="..\include\TerrainElevationDB\DatabaseWrite.h" />
     <ClInclude Include="..\include\TerrainElevationDB\Export.h" />
+    <ClInclude Include="..\include\TerrainElevationDB\RoadSurface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\include\TerrainElevationDB\CommDefine.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="RoadElevationDataGeneration.cpp" />
     <ClCompile Include="DatabaseRead.cpp" />
-    <ClCompile Include="RoadElevationDataExtraction.cpp" />
+    <ClCompile Include="RoadCenterLine.cpp" />
     <ClCompile Include="RoadModel.cpp" />
     <ClCompile Include="DatabaseWrite.cpp" />
+    <ClCompile Include="RoadSurface.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

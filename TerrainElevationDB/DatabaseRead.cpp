@@ -14,7 +14,7 @@ TerrainElevation::DatabaseRead::~DatabaseRead()
 	}
 }
 
-float * TerrainElevation::DatabaseRead::readData(float xmin,/* float xmax,*/ float ymin/*, float ymax*/)
+float * TerrainElevation::DatabaseRead::readData(float xmin, float ymin)
 {
 	MYSQL_RES *result = nullptr;
 	MYSQL_ROW row;
